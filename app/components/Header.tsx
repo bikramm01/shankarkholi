@@ -23,10 +23,8 @@ export default function Header() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 30);
     };
-
     window.addEventListener("scroll", handleScroll);
     handleScroll();
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -40,7 +38,6 @@ export default function Header() {
 
       sections.forEach((section) => {
         const rect = section.getBoundingClientRect();
-
         if (rect.top <= window.innerHeight * 0.4 && rect.bottom >= 0) {
           if (rect.top < minTop) {
             minTop = rect.top;
@@ -59,14 +56,11 @@ export default function Header() {
         setActiveIndex(index);
       }
 
-      if (!current) {
-        setActiveIndex(-1);
-      }
+      if (!current) setActiveIndex(-1);
     };
 
     window.addEventListener("scroll", handleScroll);
     handleScroll();
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, [activeIndex]);
 
@@ -78,22 +72,28 @@ export default function Header() {
           : "bg-transparent py-3 md:py-5"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 flex items-center justify-between overflow-hidden">
 
         {/* BRAND */}
         <div
-          className="leading-tight cursor-pointer select-none transition-opacity hover:opacity-80 max-w-[55%] sm:max-w-none"
+          className="leading-tight cursor-pointer select-none transition-opacity hover:opacity-80 flex-shrink min-w-0"
           onClick={() => {
             if (window.scrollY > 50) {
               window.scrollTo({ top: 0, behavior: "smooth" });
             }
           }}
         >
-          <h3 className="text-sm sm:text-base md:text-lg font-semibold tracking-[0.08em]">
+          {/* MOBILE */}
+          <h3 className="text-sm font-semibold tracking-[0.12em] uppercase sm:hidden truncate">
+            SHANKAR
+          </h3>
+
+          {/* DESKTOP */}
+          <h3 className="hidden sm:block text-sm sm:text-base md:text-lg font-semibold tracking-[0.08em] truncate">
             Shankar Kohli
           </h3>
 
-          <p className="hidden sm:block text-[8px] sm:text-[9px] md:text-xs text-gray-400 tracking-[0.12em] uppercase leading-tight">
+          <p className="hidden sm:block text-[8px] sm:text-[9px] md:text-xs text-gray-400 tracking-[0.12em] uppercase leading-tight truncate">
             Luxury Branded Residences Advisor
           </p>
         </div>
@@ -134,9 +134,9 @@ export default function Header() {
         </nav>
 
         {/* RIGHT SIDE */}
-        <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
+        <div className="flex items-center gap-2 sm:gap-3 md:gap-4 flex-shrink-0">
 
-          {/* CTA BUTTON */}
+          {/* CTA */}
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
@@ -144,13 +144,14 @@ export default function Header() {
               window.location.href =
                 "mailto:info@markrealesstate.com?subject=Consultation Request&body=Hello,%0D%0A%0D%0AI would like to book a consultation.";
             }}
-            className="bg-[#C8A45A] text-black px-3 sm:px-4 md:px-6 py-2 text-[9px] sm:text-[10px] md:text-sm tracking-[0.12em] flex items-center gap-1.5 sm:gap-2 whitespace-nowrap"
+            className="bg-[#C8A45A] text-black px-3 sm:px-4 md:px-6 py-2 text-[9px] sm:text-[10px] md:text-sm tracking-[0.12em] flex items-center gap-1.5 sm:gap-2 flex-shrink-0"
           >
             <Phone size={12} />
-            <span>Book Consultation</span>
+            <span className="sm:hidden">Book</span>
+            <span className="hidden sm:inline">Book Consultation</span>
           </motion.button>
 
-          {/* MOBILE MENU BUTTON */}
+          {/* MENU */}
           <button
             onClick={() => setOpen(!open)}
             className="md:hidden flex flex-col gap-[4px] p-2 -mr-2"
@@ -195,7 +196,6 @@ export default function Header() {
           </motion.div>
         )}
       </AnimatePresence>
-
     </header>
   );
 }

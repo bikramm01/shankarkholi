@@ -73,9 +73,15 @@ export default function Footer() {
             Connect for discreet advisory and access to off-market opportunities.
           </p>
 
-          <button className="bg-[#C8A45A] text-black px-6 py-2 text-sm tracking-[0.1em] hover:opacity-90 transition">
-            Request Consultation
-          </button>
+          <button
+  onClick={() => {
+    window.location.href =
+      "mailto:info@markrealesstate.com?subject=Consultation Request&body=Hello,%0D%0A%0D%0AI would like to request a consultation.";
+  }}
+  className="bg-[#C8A45A] text-black px-6 py-2 text-sm tracking-[0.1em] hover:opacity-90 transition"
+>
+  Request Consultation
+</button>
 
         </div>
 

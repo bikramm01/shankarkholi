@@ -116,7 +116,7 @@ const prevSlide = () => {
     <div className="max-w-lg mx-auto order-2 md:order-1 text-left">
       <Reveal>
         <p className="text-[#C8A45A] text-[10px] tracking-[0.3em] mb-4">
-          FOUNDER OF MARK REAL ESTATE
+          FOUNDER OF MARK REAL ESSTATE
         </p>
       </Reveal>
 
