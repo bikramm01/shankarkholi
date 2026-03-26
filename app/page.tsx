@@ -104,7 +104,7 @@ const prevSlide = () => {
   <div className="absolute -inset-6 bg-[radial-gradient(circle,rgba(200,164,90,0.12),transparent)]" />
 
   <Image
-    src="/images/shankar-kohli.JPG"
+    src="/images/shankar-kohli.jpeg"
     alt="Shankar Kohli"
     fill
     sizes="(max-width: 768px) 280px, (max-width: 1200px) 380px, 380px"
