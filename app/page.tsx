@@ -415,7 +415,7 @@ const prevSlide = () => {
 
   </div>
 </section>
-  {/* ═════════ STRATEGIC DEALS (WITH IMAGES) ═════════ */}
+ {/* ═════════ STRATEGIC DEALS (PREMIUM + URGENCY + REAL DATA) ═════════ */}
 <section id="deals" data-section="deals" className="py-24 md:py-36 px-5 bg-[#0f0f0f] relative overflow-hidden">
 
   {/* SUBTLE GOLD GLOW */}
@@ -427,15 +427,15 @@ const prevSlide = () => {
 
     {/* LABEL */}
     <p className="text-[#C8A45A] text-[10px] tracking-[0.35em] mb-5">
-      STRATEGIC DEALS
+      PRIVATE OPPORTUNITIES
     </p>
 
     {/* HEADING */}
     <Reveal>
       <h2 className="text-2xl md:text-4xl text-[#E8E2D9] mb-16 max-w-2xl leading-snug">
-        Real Investment Outcomes,
+        Current Opportunities Available
         <span className="block italic text-[#C8A45A] mt-1">
-          Not Just Promises
+          Through Private Access Only
         </span>
       </h2>
     </Reveal>
@@ -446,20 +446,29 @@ const prevSlide = () => {
       {[
         {
           title: "Westin Residences",
-          result: "22% Appreciation",
-          desc: "Entered at pre-launch stage with early allocation advantage.",
+          highlight: "India’s First Marriott Branded Residences",
+          price: "₹25,750/sq.ft (Pre-Launch Entry)",
+          tag: "22% Appreciation",
+          status: "PRE-LAUNCH ADVANTAGE",
+          desc: "Entered during early phase with structured payment plan and strong capital appreciation.",
           img: "/images/westin.jpg",
         },
         {
           title: "Elie Saab Residences",
-          result: "High Demand Entry",
-          desc: "Secured limited inventory before official market release.",
+          highlight: "Global Designer Branded Living",
+          price: "Limited Allocation",
+          tag: "High Demand Entry",
+          status: "OFF-MARKET ACCESS",
+          desc: "Secured exclusive inventory before public release.",
           img: "/images/elie-saab.webp",
         },
         {
-          title: "Lamborghini Residences",
-          result: "Premium Positioning",
-          desc: "Strategically acquired during early phase.",
+          title: "Tonino Lamborghini Residences",
+          highlight: "Italian Design • Ultra Luxury Living",
+          price: "₹24,000/sq.ft (Inaugural Pricing)",
+          tag: "Next Luxury Landmark",
+          status: "INAUGURAL PRICING",
+          desc: "Preferred allotment in pre-launch stage with strong appreciation potential.",
           img: "/images/lamborghini.jpeg",
         },
       ].map((item, i) => (
@@ -468,6 +477,7 @@ const prevSlide = () => {
 
             {/* IMAGE */}
             <div className="relative h-[260px] md:h-[490px] overflow-hidden">
+
               <Image
                 src={item.img}
                 alt={item.title}
@@ -476,10 +486,27 @@ const prevSlide = () => {
                 className="object-cover scale-105 transition duration-700 group-hover:scale-110"
               />
 
-              {/* DARK OVERLAY */}
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition duration-500" />
+              {/* STATUS TAG */}
+              <div className="absolute top-4 left-4 z-10">
+                <span className="bg-[#C8A45A] text-black text-[10px] px-3 py-1 tracking-[0.15em]">
+                  {item.status}
+                </span>
+              </div>
 
-              {/* GRADIENT */}
+              {/* HOVER CTA */}
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500">
+                <button
+                  onClick={() =>
+                    document.getElementById("final-cta")?.scrollIntoView({ behavior: "smooth" })
+                  }
+                  className="bg-[#C8A45A] text-black px-6 py-2 text-xs tracking-[0.1em]"
+                >
+                  GET ACCESS
+                </button>
+              </div>
+
+              {/* OVERLAYS */}
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition duration-500" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
             </div>
 
@@ -496,14 +523,29 @@ const prevSlide = () => {
                 {item.title}
               </h3>
 
-              {/* RESULT */}
+              {/* HIGHLIGHT */}
+              <p className="text-[#C8A45A] text-xs tracking-[0.15em] mb-2">
+                {item.highlight}
+              </p>
+
+              {/* PRICE */}
+              <p className="text-[#E8E2D9] text-sm mb-2">
+                {item.price}
+              </p>
+
+              {/* TAG */}
               <p className="text-[#C8A45A] text-sm mb-3 tracking-[0.12em]">
-                {item.result}
+                {item.tag}
               </p>
 
               {/* DESC */}
               <p className="text-[#8A8A8A] text-sm leading-relaxed">
                 {item.desc}
+              </p>
+
+              {/* URGENCY LINE */}
+              <p className="text-[#C8A45A]/80 text-[11px] mt-3 tracking-[0.1em]">
+                Limited inventory • Private allocation only
               </p>
 
               {/* GOLD LINE */}
@@ -515,6 +557,23 @@ const prevSlide = () => {
         </Reveal>
       ))}
 
+    </div>
+
+    {/* FINAL CONVERSION BLOCK */}
+    <div className="text-center mt-20 max-w-xl mx-auto">
+      <p className="text-[#8A8A8A] text-sm mb-6 leading-relaxed">
+        Most premium units are allocated before public release.  
+        By the time they hit the market, the real advantage is already gone.
+      </p>
+
+      <button
+        onClick={() =>
+          document.getElementById("final-cta")?.scrollIntoView({ behavior: "smooth" })
+        }
+        className="bg-[#C8A45A] text-black px-8 py-3 text-sm tracking-[0.1em] hover:opacity-90 transition"
+      >
+        Get Early Access
+      </button>
     </div>
 
   </div>
@@ -667,12 +726,14 @@ const prevSlide = () => {
           A discreet, end-to-end system designed for serious investors.
         </p>
 
-       <a href="mailto:info@markrealesstate.com?subject=Private Consultation Request">
-  <button className="bg-[#C8A45A] text-black px-8 py-3 text-sm tracking-[0.1em] hover:opacity-90 transition">
-    Request Private Consultation
-  </button>
-</a>
-
+       <button
+  onClick={() =>
+    document.getElementById("final-cta")?.scrollIntoView({ behavior: "smooth" })
+  }
+  className="bg-[#C8A45A] text-black px-8 py-3 text-sm tracking-[0.1em] hover:opacity-90 transition"
+>
+  Request Private Consultation
+</button>
       </div>
     </Reveal>
 
