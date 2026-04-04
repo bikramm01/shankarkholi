@@ -416,9 +416,9 @@ const prevSlide = () => {
   </div>
 </section>
  {/* ═════════ STRATEGIC DEALS (PREMIUM + URGENCY + REAL DATA) ═════════ */}
-<section id="deals" data-section="deals" className="py-24 md:py-36 px-5 bg-[#0f0f0f] relative overflow-hidden">
+<section id="deals" className="py-24 md:py-36 px-5 bg-[#0f0f0f] relative overflow-hidden">
 
-  {/* SUBTLE GOLD GLOW */}
+  {/* GOLD GLOW */}
   <div className="absolute inset-0 -z-10">
     <div className="absolute w-[500px] h-[500px] bg-[#C8A45A]/10 blur-[140px] rounded-full left-[20%] top-[-100px]" />
   </div>
@@ -447,7 +447,8 @@ const prevSlide = () => {
         {
           title: "Westin Residences",
           highlight: "India’s First Marriott Branded Residences",
-          price: "₹25,750/sq.ft (Pre-Launch Entry)",
+          price: "₹5.2Cr Entry (Pre-Launch)",
+          subPrice: "₹25,750/sq.ft",
           tag: "22% Appreciation",
           status: "PRE-LAUNCH ADVANTAGE",
           desc: "Entered during early phase with structured payment plan and strong capital appreciation.",
@@ -457,6 +458,7 @@ const prevSlide = () => {
           title: "Elie Saab Residences",
           highlight: "Global Designer Branded Living",
           price: "Limited Allocation",
+          subPrice: "",
           tag: "High Demand Entry",
           status: "OFF-MARKET ACCESS",
           desc: "Secured exclusive inventory before public release.",
@@ -465,7 +467,8 @@ const prevSlide = () => {
         {
           title: "Tonino Lamborghini Residences",
           highlight: "Italian Design • Ultra Luxury Living",
-          price: "₹24,000/sq.ft (Inaugural Pricing)",
+          price: "₹4.8Cr+ Entry (Pre-Launch)",
+          subPrice: "₹24,000/sq.ft",
           tag: "Next Luxury Landmark",
           status: "INAUGURAL PRICING",
           desc: "Preferred allotment in pre-launch stage with strong appreciation potential.",
@@ -482,18 +485,17 @@ const prevSlide = () => {
                 src={item.img}
                 alt={item.title}
                 fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 className="object-cover scale-105 transition duration-700 group-hover:scale-110"
               />
 
-              {/* STATUS TAG */}
+              {/* STATUS */}
               <div className="absolute top-4 left-4 z-10">
                 <span className="bg-[#C8A45A] text-black text-[10px] px-3 py-1 tracking-[0.15em]">
                   {item.status}
                 </span>
               </div>
 
-              {/* HOVER CTA */}
+              {/* CTA */}
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500">
                 <button
                   onClick={() =>
@@ -505,7 +507,7 @@ const prevSlide = () => {
                 </button>
               </div>
 
-              {/* OVERLAYS */}
+              {/* OVERLAY */}
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition duration-500" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
             </div>
@@ -513,42 +515,43 @@ const prevSlide = () => {
             {/* CONTENT */}
             <div className="p-6 md:p-7">
 
-              {/* STEP */}
               <span className="text-[#C8A45A]/40 text-xs mb-2 block">
                 0{i + 1}
               </span>
 
-              {/* TITLE */}
               <h3 className="text-[#E8E2D9] text-lg mb-1">
                 {item.title}
               </h3>
 
-              {/* HIGHLIGHT */}
               <p className="text-[#C8A45A] text-xs tracking-[0.15em] mb-2">
                 {item.highlight}
               </p>
 
-              {/* PRICE */}
-              <p className="text-[#E8E2D9] text-sm mb-2">
+              {/* MAIN PRICE */}
+              <p className="text-[#E8E2D9] text-sm font-medium">
                 {item.price}
               </p>
 
-              {/* TAG */}
+              {/* SUB PRICE (hidden logic) */}
+              {item.subPrice && (
+                <p className="text-[#666] text-xs mb-2">
+                  {item.subPrice}
+                </p>
+              )}
+
               <p className="text-[#C8A45A] text-sm mb-3 tracking-[0.12em]">
                 {item.tag}
               </p>
 
-              {/* DESC */}
               <p className="text-[#8A8A8A] text-sm leading-relaxed">
                 {item.desc}
               </p>
 
-              {/* URGENCY LINE */}
+              {/* URGENCY */}
               <p className="text-[#C8A45A]/80 text-[11px] mt-3 tracking-[0.1em]">
                 Limited inventory • Private allocation only
               </p>
 
-              {/* GOLD LINE */}
               <div className="w-8 h-[1px] bg-[#C8A45A] mt-5 group-hover:w-12 transition-all duration-300" />
 
             </div>
@@ -559,7 +562,7 @@ const prevSlide = () => {
 
     </div>
 
-    {/* FINAL CONVERSION BLOCK */}
+    {/* FINAL CTA */}
     <div className="text-center mt-20 max-w-xl mx-auto">
       <p className="text-[#8A8A8A] text-sm mb-6 leading-relaxed">
         Most premium units are allocated before public release.  
