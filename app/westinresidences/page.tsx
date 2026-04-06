@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -96,6 +96,14 @@ export default function WestinResidencesPage() {
   source: "westin-landing-page", // 🔥 tracking
 });
 
+  const [isMobile, setIsMobile] = useState(false);
+ useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check(); // initial check
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
 const [loading, setLoading] = useState(false);
 const [success, setSuccess] = useState(false);
 const [error, setError] = useState("");
@@ -154,241 +162,228 @@ const [error, setError] = useState("");
       {/* ══════════════════════════════════════════
           HERO  (light)
       ══════════════════════════════════════════ */}
- <section
-  id="home"
-  style={{
-    position: "relative",
-    height: "100vh",
-    overflow: "hidden",
-  }}
->
-  {/* 🎬 VIDEO */}
-  <video
-    ref={videoRef}
-    autoPlay
-    muted
-    loop
-    playsInline
-    style={{
-      position: "absolute",
-      inset: 0,
-      width: "100%",
-      height: "100%",
-      objectFit: "cover",
-      zIndex: 0,
-      filter: "brightness(0.75)",
-    }}
-  >
-    <source src="/videos/westin/westin-hero.mp4" type="video/mp4" />
-  </video>
-
-  {/* 🔥 OVERLAY */}
-  <div
-    style={{
-      position: "absolute",
-      inset: 0,
-      background:
-        "linear-gradient(to right, rgba(0,0,0,0.65) 25%, rgba(0,0,0,0.15) 65%, transparent)",
-      zIndex: 1,
-      pointerEvents: "none",
-    }}
-  />
-
-  {/* 🧠 CONTENT */}
-  <div
-    style={{
-      position: "relative",
-      zIndex: 2,
-      height: "100%",
-      display: "flex",
-      alignItems: "center",
-    }}
-  >
-    <div
+<section
+      id="home"
       style={{
-        maxWidth: "520px",
-        padding: "0 20px",
-        marginLeft: "8%", // 🔥 premium left alignment
-        color: "#fff",
+        position: "relative",
+        height: "100vh",
+        overflow: "hidden",
       }}
     >
-      {/* TOP LABEL */}
-      <span
+      {/* 🎬 VIDEO */}
+      <video
+        ref={videoRef}
+        autoPlay
+        muted
+        loop
+        playsInline
         style={{
-          fontSize: "10px",
-          letterSpacing: "2.5px",
-          opacity: 0.7,
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          zIndex: 0,
+          filter: "brightness(0.75)",
         }}
       >
-        BY MARRIOTT INTERNATIONAL · WHITELAND
-      </span>
+        <source src="/videos/westin/westin-hero.mp4" type="video/mp4" />
+      </video>
 
-      {/* 🔥 HERO TEXT */}
-      <h1
-        style={{
-          fontSize: "clamp(34px, 6vw, 72px)",
-          lineHeight: 1.05,
-          margin: "14px 0",
-          fontWeight: 400,
-          fontFamily: "'Playfair Display', serif",
-          letterSpacing: "-0.5px",
-        }}
-      >
-        <span style={{ fontWeight: 500 }}>Westin</span><br />
-
-        <em
-          style={{
-            fontStyle: "italic",
-            background: "linear-gradient(90deg, #C8A45A, #E6C98B)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-          }}
-        >
-          Residences
-        </em>
-      </h1>
-
-      {/* 🔥 TAGLINE (MAIN FOCUS NOW) */}
-      <p
-        style={{
-          fontSize: "18px",
-          margin: "10px 0 18px",
-          color: "#e6c98b",
-          fontWeight: 300,
-        }}
-      >
-        Crafted for a Life Beyond Ordinary
-      </p>
-
-      {/* LOCATION */}
-      <p
-        style={{
-          fontSize: "11px",
-          letterSpacing: "3px",
-          textTransform: "uppercase",
-          opacity: 0.6,
-        }}
-      >
-        Gurugram
-      </p>
-
-      {/* 🔥 BUTTONS */}
+      {/* 🔥 OVERLAY */}
       <div
         style={{
-          marginTop: "22px",
+          position: "absolute",
+          inset: 0,
+          background: isMobile
+            ? "linear-gradient(to top, rgba(0,0,0,0.75), rgba(0,0,0,0.2), transparent)"
+            : "linear-gradient(to right, rgba(0,0,0,0.65) 25%, rgba(0,0,0,0.15) 65%, transparent)",
+          zIndex: 1,
+        }}
+      />
+
+      {/* 🧠 CONTENT */}
+      <div
+        style={{
+          position: "relative",
+          zIndex: 2,
+          height: "100%",
           display: "flex",
-          gap: "12px",
-          flexWrap: "wrap",
+          alignItems: isMobile ? "flex-end" : "center",
+          paddingBottom: isMobile ? "120px" : "0px",
         }}
       >
-        <a
-          href="#contact"
+        <div
           style={{
-            padding: "12px 22px",
-            background: "#C8A45A",
-            color: "#000",
-            fontSize: "12px",
-            textDecoration: "none",
-            letterSpacing: "1px",
-            borderRadius: "4px",
-          }}
-        >
-          Book Site Visit
-        </a>
-
-        <a
-          href="#residences"
-          style={{
-            padding: "12px 22px",
-            border: "1px solid #fff",
-            fontSize: "12px",
+            maxWidth: isMobile ? "100%" : "520px",
+            padding: "0 20px",
+            marginLeft: isMobile ? "16px" : "8%", // 🔥 FIXED LEFT ALIGN
+            marginRight: "16px",
             color: "#fff",
-            textDecoration: "none",
-            letterSpacing: "1px",
-            borderRadius: "4px",
+            textAlign: "left", // 🔥 ALWAYS LEFT
           }}
         >
-          Explore
-        </a>
-      </div>
-    </div>
-  </div>
+          {/* TOP LABEL */}
+          <span
+            style={{
+              fontSize: "10px",
+              letterSpacing: "2.5px",
+              opacity: 0.7,
+            }}
+          >
+            BY MARRIOTT INTERNATIONAL · WHITELAND
+          </span>
 
-  {/* 🔥 FLOATING CARD (DESKTOP ONLY) */}
-  <div className="floating-card">
-    <div
-      style={{
-        position: "absolute",
-        right: "60px",
-        bottom: "140px",
-        zIndex: 2,
-        background: "rgba(0,0,0,0.5)",
-        backdropFilter: "blur(12px)",
-        padding: "20px 24px",
-        borderRadius: "12px",
-        color: "#fff",
-        maxWidth: "240px",
-      }}
-    >
-      <p style={{ fontSize: "11px", opacity: 0.7 }}>STARTING FROM</p>
-      <h3 style={{ fontSize: "28px", margin: "6px 0" }}>₹5 Cr*</h3>
-      <p style={{ fontSize: "12px", opacity: 0.8 }}>
-        3 & 4 BHK Luxury Residences
-      </p>
-    </div>
-  </div>
+          {/* 🔥 HERO TEXT */}
+          <h1
+            style={{
+              fontSize: isMobile ? "40px" : "clamp(34px, 6vw, 72px)",
+              lineHeight: isMobile ? 1.15 : 1.05,
+              margin: "14px 0",
+              fontWeight: 400,
+              fontFamily: "'Playfair Display', serif",
+              letterSpacing: "-0.5px",
+            }}
+          >
+            <span style={{ fontWeight: 500 }}>Westin</span><br />
+            <em
+              style={{
+                fontStyle: "italic",
+                background: "linear-gradient(90deg, #C8A45A, #E6C98B)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              Residences
+            </em>
+          </h1>
 
-  {/* 📊 STATS */}
-  <div
-    style={{
-      position: "absolute",
-      bottom: "20px",
-      width: "100%",
-      display: "flex",
-      justifyContent: "center",
-      zIndex: 2,
-      padding: "0 16px",
-    }}
-  >
-    <div
-      className="stats-grid"
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(4, 1fr)",
-        gap: "20px",
-        padding: "14px 28px",
-        borderRadius: "12px",
-        background: "rgba(0,0,0,0.35)",
-        backdropFilter: "blur(10px)",
-        maxWidth: "900px",
-        width: "100%",
-        textAlign: "center",
-      }}
-    >
-      {STATS.map((s, i) => (
-        <div key={i} style={{ color: "#fff" }}>
-          <p style={{ fontSize: "18px" }}>{s.value}</p>
-          <p style={{ fontSize: "11px", opacity: 0.7 }}>{s.label}</p>
+          {/* TAGLINE */}
+          <p
+            style={{
+              fontSize: isMobile ? "15px" : "18px",
+              margin: "10px 0 18px",
+              color: "#e6c98b",
+              fontWeight: 300,
+            }}
+          >
+            Crafted for a Life Beyond Ordinary
+          </p>
+
+          {/* LOCATION */}
+          <p
+            style={{
+              fontSize: "11px",
+              letterSpacing: "3px",
+              textTransform: "uppercase",
+              opacity: 0.6,
+            }}
+          >
+            Gurugram
+          </p>
+
+          {/* 🔥 BUTTONS */}
+          <div
+            style={{
+              marginTop: "22px",
+              display: "flex",
+              gap: "12px",
+              flexWrap: "wrap",
+              justifyContent: "flex-start", // 🔥 FIXED
+            }}
+          >
+            <a
+              href="#contact"
+              style={{
+                padding: "12px 22px",
+                background: "#C8A45A",
+                color: "#000",
+                fontSize: "12px",
+                textDecoration: "none",
+                letterSpacing: "1px",
+                borderRadius: "4px",
+              }}
+            >
+              Book Site Visit
+            </a>
+
+            <a
+              href="#residences"
+              style={{
+                padding: "12px 22px",
+                border: "1px solid #fff",
+                fontSize: "12px",
+                color: "#fff",
+                textDecoration: "none",
+                letterSpacing: "1px",
+                borderRadius: "4px",
+              }}
+            >
+              Explore
+            </a>
+          </div>
         </div>
-      ))}
-    </div>
-  </div>
+      </div>
 
-  {/* 🔥 RESPONSIVE */}
-  <style>
-    {`
-      @media (max-width: 768px) {
-        .floating-card {
-          display: none;
-        }
+      {/* 🔥 FLOATING CARD */}
+      {!isMobile && (
+        <div
+          style={{
+            position: "absolute",
+            right: "60px",
+            bottom: "140px",
+            zIndex: 2,
+            background: "rgba(0,0,0,0.5)",
+            backdropFilter: "blur(12px)",
+            padding: "20px 24px",
+            borderRadius: "12px",
+            color: "#fff",
+            maxWidth: "240px",
+          }}
+        >
+          <p style={{ fontSize: "11px", opacity: 0.7 }}>STARTING FROM</p>
+          <h3 style={{ fontSize: "28px", margin: "6px 0" }}>₹5 Cr*</h3>
+          <p style={{ fontSize: "12px", opacity: 0.8 }}>
+            3 & 4 BHK Luxury Residences
+          </p>
+        </div>
+      )}
 
-        .stats-grid {
-          grid-template-columns: repeat(2, 1fr) !important;
-        }
-      }
-    `}
-  </style>
-</section>
+      {/* 📊 STATS */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: "20px",
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          zIndex: 2,
+          padding: "0 16px",
+        }}
+      >
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(4, 1fr)",
+            gap: isMobile ? "14px" : "20px",
+            padding: isMobile ? "12px 16px" : "14px 28px",
+            borderRadius: "12px",
+            background: "rgba(0,0,0,0.35)",
+            backdropFilter: "blur(10px)",
+            maxWidth: "900px",
+            width: "100%",
+            textAlign: "center",
+          }}
+        >
+          {STATS.map((s, i) => (
+            <div key={i} style={{ color: "#fff" }}>
+              <p style={{ fontSize: isMobile ? "16px" : "18px" }}>{s.value}</p>
+              <p style={{ fontSize: "11px", opacity: 0.7 }}>{s.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
       {/* ══════════════════════════════════════════
           ABOUT / INTRO  (light)
       ══════════════════════════════════════════ */}
@@ -465,41 +460,84 @@ const [error, setError] = useState("");
           WHY WESTIN  (dark)
       ══════════════════════════════════════════ */}
       <section className="westin-why">
-        <div className="westin-why-head">
-          <span className="westin-section-label" style={{ textAlign: "center", display: "block" }}>
-            Why Choose Westin
-          </span>
-          <h2>Crafted for the <em>Discerning Few</em></h2>
+  <div className="westin-why-head">
+    <span
+      className="westin-section-label"
+      style={{ textAlign: "center", display: "block" }}
+    >
+      Why Choose Westin
+    </span>
+    <h2>
+      Crafted for the <em>Discerning Few</em>
+    </h2>
+  </div>
+
+  <div className="westin-hl-grid">
+    {HIGHLIGHTS.map((h, i) => (
+      <div
+        key={h.no}
+        className="westin-hl-card"
+        style={{
+          direction:
+            typeof window !== "undefined" && window.innerWidth < 768
+              ? "ltr" // 🔥 FIX: disable rtl on mobile
+              : i % 2 === 1
+              ? "rtl"
+              : "ltr",
+        }}
+      >
+        {/* Image */}
+        <div
+          className="westin-hl-img"
+          style={{
+            direction: "ltr",
+            width: "100%",
+            minHeight:
+              typeof window !== "undefined" && window.innerWidth < 768
+                ? "220px"
+                : undefined,
+          }}
+        >
+          <Image
+            src={h.img}
+            alt={h.title}
+            fill
+            sizes="(max-width: 1000px) 100vw, 50vw"
+            style={{
+              objectFit: "cover",
+              opacity: 0.82,
+              filter: "brightness(0.9) contrast(1.05)",
+            }}
+          />
         </div>
 
-        <div className="westin-hl-grid">
-          {HIGHLIGHTS.map((h, i) => (
-            <div
-              key={h.no}
-              className="westin-hl-card"
-              style={{ direction: i % 2 === 1 ? "rtl" : "ltr" }}
-            >
-              {/* Image */}
-              <div className="westin-hl-img" style={{ direction: "ltr" }}>
-                <Image
-  src={h.img}
-                  alt={h.title}
-                  fill
-                  sizes="(max-width: 1000px) 100vw, 50vw"
-                  style={{ objectFit: "cover", opacity: 0.82, filter: "brightness(0.9) contrast(1.05)" }}
-                />
-              </div>
-              {/* Body */}
-              <div className="westin-hl-body" style={{ direction: "ltr" }}>
-                <span className="westin-hl-num">{h.no}</span>
-                <h3>{h.title}</h3>
-                <div className="westin-divider" />
-                <p>{h.body}</p>
-              </div>
-            </div>
-          ))}
+        {/* Body */}
+        <div
+          className="westin-hl-body"
+          style={{
+            direction: "ltr",
+            padding:
+              typeof window !== "undefined" && window.innerWidth < 768
+                ? "16px"
+                : undefined,
+          }}
+        >
+          <span className="westin-hl-num">{h.no}</span>
+          <h3>{h.title}</h3>
+          <div className="westin-divider" />
+          <p
+            style={{
+              wordBreak: "break-word", // 🔥 FIX CROPPING
+              overflowWrap: "break-word",
+            }}
+          >
+            {h.body}
+          </p>
         </div>
-      </section>
+      </div>
+    ))}
+  </div>
+</section>
 
       {/* ══════════════════════════════════════════
           AMENITIES  (dark)
