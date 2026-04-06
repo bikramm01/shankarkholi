@@ -162,7 +162,7 @@ const [error, setError] = useState("");
       {/* ══════════════════════════════════════════
           HERO  (light)
       ══════════════════════════════════════════ */}
-<section
+ <section
       id="home"
       style={{
         position: "relative",
@@ -210,6 +210,9 @@ const [error, setError] = useState("");
           height: "100%",
           display: "flex",
           alignItems: isMobile ? "flex-end" : "center",
+
+          // 🔥 FIX: HEADER OVERLAP
+          paddingTop: isMobile ? "100px" : "0px",
           paddingBottom: isMobile ? "120px" : "0px",
         }}
       >
@@ -217,10 +220,10 @@ const [error, setError] = useState("");
           style={{
             maxWidth: isMobile ? "100%" : "520px",
             padding: "0 20px",
-            marginLeft: isMobile ? "16px" : "8%", // 🔥 FIXED LEFT ALIGN
+            marginLeft: isMobile ? "16px" : "8%",
             marginRight: "16px",
             color: "#fff",
-            textAlign: "left", // 🔥 ALWAYS LEFT
+            textAlign: "left",
           }}
         >
           {/* TOP LABEL */}
@@ -245,7 +248,8 @@ const [error, setError] = useState("");
               letterSpacing: "-0.5px",
             }}
           >
-            <span style={{ fontWeight: 500 }}>Westin</span><br />
+            <span style={{ fontWeight: 500 }}>Westin</span>
+            <br />
             <em
               style={{
                 fontStyle: "italic",
@@ -289,7 +293,7 @@ const [error, setError] = useState("");
               display: "flex",
               gap: "12px",
               flexWrap: "wrap",
-              justifyContent: "flex-start", // 🔥 FIXED
+              justifyContent: "flex-start",
             }}
           >
             <a

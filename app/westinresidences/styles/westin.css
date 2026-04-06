@@ -718,7 +718,28 @@ HERO — FIXED (CINEMATIC DARK VIDEO)
   color: var(--w-text-dmid);
   line-height: 1.9;
 }
+@media (max-width: 768px) {
 
+  .westin-hl-card {
+    grid-template-columns: 1fr !important; /* 🔥 STACK */
+    overflow: visible !important;          /* 🔥 STOP CUTTING */
+  }
+
+  .westin-hl-img {
+    min-height: 220px !important;
+  }
+
+  .westin-hl-body {
+    padding: 20px !important;              /* 🔥 BETTER SPACING */
+  }
+
+  .westin-hl-body p {
+    white-space: normal !important;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+}
 /* ═══════════════════════════════════════════════════
    AMENITIES  (dark)
 ═══════════════════════════════════════════════════ */
