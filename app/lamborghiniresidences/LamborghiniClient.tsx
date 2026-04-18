@@ -1117,7 +1117,7 @@ useEffect(() => {
       borderRadius: "4px",
     }}
   >
-    {isMobile ? "+91 98114 22554" : "+91 98114 22554"}
+    {isMobile ? "CALL NOW" : "+91 98114 22554"}
   </a>
 </nav>
 {/* HERO */}
